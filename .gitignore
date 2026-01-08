@@ -1,0 +1,15 @@
+# No sensitive files should be in .gs scripts
+# But just in case:
+
+# Config files with keys
+config.json
+secrets.json
+*.key
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
