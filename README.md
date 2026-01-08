@@ -6,16 +6,29 @@
 
 ## Scripts Overview
 
-### 3DSellers Integration
+### 3DSellers Integration (`/3dsellers/`)
 Automated inventory and listing management for multi-channel e-commerce.
 
 | Script | Purpose |
 |--------|---------|
 | `3DSELLERS_V7_MASTER.gs` | Complete inventory automation system |
+| `3DSELLERS_V5_FIXED.gs` | Stable production version with fixes |
+| `3dsellers-production-ready.gs` | Cleaned production deployment |
 | `UNIFIED_3DSELLERS_V3_COMPLETE.gs` | Multi-channel sync and updates |
 | `FINAL_UNIFIED_3DSELLERS.gs` | Production-ready listing manager |
+| `3D_SELLERS_IMAGE_CROPPING.gs` | Image cropping automation |
+| `CREATE_CONFIG_SHEET.gs` | Setup configuration sheet |
 
-### News Engine
+### AI Integration (`/ai-integration/`)
+Scripts that connect Google Sheets to AI APIs.
+
+| Script | Purpose |
+|--------|---------|
+| `AI-ENHANCED-GOOGLE-APPS-SCRIPT.gs` | AI-powered data processing |
+| `AI-METADATA-ENHANCED-SCRIPT.gs` | AI metadata extraction and enhancement |
+| `AI_ART_SORTER.gs` | AI-based artwork categorization |
+
+### News Engine (`/news-engine/`)
 AI-powered news curation and content processing.
 
 | Script | Purpose |
@@ -24,14 +37,22 @@ AI-powered news curation and content processing.
 | `NEWS_FeedlyEmail_SlideDeck.gs` | Convert news to presentations |
 | `NEWS_Pipeline_UI.gs` | News processing interface |
 
-### Utilities
+### Utilities (`/utilities/`)
 General-purpose Google Sheets automation.
 
 | Script | Purpose |
 |--------|---------|
+| `EbayAutomation.gs` | eBay listing automation |
+| `ENHANCED-SALES-CHANNEL-ANALYZER.gs` | Multi-channel sales analysis |
+| `CREATIVE-AUTO-RENAMER.gs` | AI-powered file renaming |
+| `GALLERY-GAUNTLET-AUTO-FORMAT-SCRIPT.gs` | Gallery formatting automation |
 | `ROBUST_Dual_AI_Checker_Script.gs` | Validate data with multiple AI models |
 | `drive_folder_catalog.gs` | Index Google Drive folders |
 | `google_sheets_uploader.gs` | Batch upload data to Sheets |
+| `FRAME_VARIATIONS_SIMPLE.gs` | Frame variation generator |
+| `GoogleAppsScript_ChannelSeparator.gs` | Channel data separation |
+| `Google_Apps_Script_INBOUND_Monitor.gs` | Inbound monitoring alerts |
+| `populate_image_urls_v3.gs` | Populate image URLs in sheets |
 
 ---
 

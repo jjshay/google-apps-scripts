@@ -9,7 +9,7 @@
  */
 
 // Configuration - CHANGE THESE
-const API_KEY = "dwDDsaIqQPuIwVnYPDdfNR6B2OsDtZNl";  // Must match PHP file
+const API_KEY = PropertiesService.getScriptProperties().getProperty('UPLOAD_API_KEY') || '';  // Must match PHP file
 const UPLOAD_URL = "https://gauntlet.gallery/upload_image.php";
 const DRIVE_FOLDER_ID = "YOUR_GOOGLE_DRIVE_FOLDER_ID";  // Folder containing images
 
