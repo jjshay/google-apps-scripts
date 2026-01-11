@@ -1,0 +1,9 @@
+# Google Apps Scripts - Requirements
+#
+# This repo contains Google Apps Script (.gs) files
+# that run inside Google Sheets, not Python.
+#
+# The demo.py file has no dependencies - just run:
+#   python demo.py
+#
+# No pip install needed.
