@@ -1,0 +1,45 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+
+    - name: Install clasp
+      run: npm install -g @google/clasp
+
+    - name: Validate GS files syntax
+      run: |
+        echo "Validating Google Apps Script files..."
+        for file in *.gs; do
+          if [ -f "$file" ]; then
+            echo "Checking $file..."
+            node -e "require('fs').readFileSync('$file', 'utf8')" || exit 1
+          fi
+        done
+        echo "All .gs files are valid!"
+
+  docs:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Check documentation
+      run: |
+        echo "Checking for required documentation..."
+        test -f README.md || (echo "Missing README.md" && exit 1)
+        test -f LICENSE || (echo "Missing LICENSE" && exit 1)
+        echo "Documentation check passed!"

@@ -1,5 +1,11 @@
 # Google Apps Scripts Collection
 
+![CI](https://github.com/jjshay/google-apps-scripts/workflows/CI/badge.svg)
+![Google Apps Script](https://img.shields.io/badge/Google%20Apps%20Script-enabled-green.svg)
+![License](https://img.shields.io/badge/license-MIT-green.svg)
+![AI Models](https://img.shields.io/badge/AI%20Models-Claude%20%7C%20GPT--4%20%7C%20Gemini-purple.svg)
+![Production](https://img.shields.io/badge/status-production--ready-brightgreen.svg)
+
 A comprehensive library of Google Apps Scripts for e-commerce automation, AI integration, and data processing. These scripts power real production workflows managing thousands of art listings across eBay, Etsy, and other marketplaces.
 
 ---
