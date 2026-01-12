@@ -54,25 +54,38 @@ def show_banner() -> None:
 def demo_3dsellers() -> None:
     print_header("3DSELLERS INVENTORY SYNC")
 
-    sample = {
-        "image": "death-nyc-marilyn-001.jpg",
-        "artist": "Death NYC",
-        "title": "Marilyn Monroe x Chanel",
-        "sku": "1_DNYC_Marilyn",
-        "price": 225.00,
-        "status": "Ready"
-    }
+    samples = [
+        {"sku": "1_DNYC_Marilyn", "artist": "Death NYC", "title": "Marilyn Monroe x Chanel", "price": 225.00, "status": "Ready"},
+        {"sku": "2_DNYC_Snoopy", "artist": "Death NYC", "title": "Snoopy x Louis Vuitton", "price": 195.00, "status": "Ready"},
+        {"sku": "3_SF_Hope", "artist": "Shepard Fairey", "title": "Hope (2008)", "price": 1200.00, "status": "Ready"},
+        {"sku": "4_BK_Balloon", "artist": "Banksy", "title": "Balloon Girl", "price": 850.00, "status": "Ready"},
+        {"sku": "5_KAWS_Comp", "artist": "KAWS", "title": "Companion (Grey)", "price": 450.00, "status": "Review"},
+        {"sku": "6_MBW_Einstein", "artist": "Mr. Brainwash", "title": "Einstein", "price": 1800.00, "status": "Ready"},
+    ]
 
     if RICH_AVAILABLE:
         console.print("[dim]Auto-populates 30+ fields from artwork images using Claude Vision AI[/dim]\n")
 
-        table = Table(title="📦 Sample Processed Item", box=box.ROUNDED)
-        table.add_column("Field", style="cyan")
-        table.add_column("Value", style="gold1")
+        table = Table(title="📦 Today's Processed Items (6 of 47)", box=box.ROUNDED)
+        table.add_column("SKU", style="cyan")
+        table.add_column("Artist", style="gold1")
+        table.add_column("Title")
+        table.add_column("Price", justify="right", style="green")
+        table.add_column("Status", justify="center")
 
-        for k, v in sample.items():
-            table.add_row(k, str(v))
+        for item in samples:
+            status_color = "green" if item["status"] == "Ready" else "yellow"
+            table.add_row(
+                item["sku"],
+                item["artist"],
+                item["title"],
+                f"${item['price']:,.2f}",
+                f"[{status_color}]{item['status']}[/{status_color}]"
+            )
         console.print(table)
+
+        total_value = sum(s["price"] for s in samples)
+        console.print(f"\n[bold]Batch Total:[/bold] [green]${total_value:,.2f}[/green]  |  [bold]Ready:[/bold] 5  |  [yellow]Review:[/yellow] 1")
 
         console.print(Panel("""
 [bold]What it does:[/bold]
@@ -80,38 +93,50 @@ def demo_3dsellers() -> None:
   2. Sends to Claude Vision API for analysis
   3. Auto-fills inventory sheet (artist, title, price, etc.)
   4. Syncs to 3DSellers for eBay/Etsy listing
+
+[bold]Stats This Month:[/bold]
+  • 47 items processed
+  • 94% auto-classified correctly
+  • 3 hours saved per day
 """, title="🔄 Workflow", border_style="green", box=box.ROUNDED))
     else:
-        print(json.dumps(sample, indent=2))
+        for item in samples:
+            print(f"  {item['sku']}: {item['artist']} - {item['title']} (${item['price']})")
 
 
 def demo_ai_integration() -> None:
     print_header("AI INTEGRATION SCRIPTS")
 
     results = [
-        ("img_001.jpg", "Shepard Fairey", "94%", "green"),
-        ("img_002.jpg", "Death NYC", "97%", "green"),
-        ("img_003.jpg", "Banksy", "89%", "green"),
-        ("img_004.jpg", "NEEDS REVIEW", "45%", "red"),
-        ("img_005.jpg", "Mr. Brainwash", "91%", "green"),
+        ("DNYC-Marilyn-001.jpg", "Death NYC", "Screen Print", "97%", "green"),
+        ("SF-Hope-002.jpg", "Shepard Fairey", "Screen Print", "94%", "green"),
+        ("BK-Thrower-003.jpg", "Banksy", "Screen Print", "89%", "green"),
+        ("Unknown-004.jpg", "NEEDS REVIEW", "Unknown", "45%", "red"),
+        ("MBW-Einstein-005.jpg", "Mr. Brainwash", "Mixed Media", "91%", "green"),
+        ("KAWS-Comp-006.jpg", "KAWS", "Vinyl Sculpture", "96%", "green"),
+        ("JR-Face-007.jpg", "JR", "Lithograph", "88%", "green"),
+        ("Invader-008.jpg", "Invader", "Screen Print", "93%", "green"),
     ]
 
     if RICH_AVAILABLE:
         console.print("[dim]Connects Google Sheets to Claude, GPT-4, Gemini for image classification[/dim]\n")
 
-        table = Table(title="🤖 AI Classification Results", box=box.ROUNDED)
+        table = Table(title="🤖 AI Classification Results (8 Images)", box=box.ROUNDED)
         table.add_column("Image", style="cyan")
-        table.add_column("Classification")
+        table.add_column("Artist", style="gold1")
+        table.add_column("Medium", style="dim")
         table.add_column("Confidence", justify="center")
 
-        for img, result, conf, color in results:
-            table.add_row(img, result, f"[{color}]{conf}[/{color}]")
+        for img, artist, medium, conf, color in results:
+            conf_val = int(conf.replace('%', ''))
+            bar = "█" * (conf_val // 10) + "░" * (10 - conf_val // 10)
+            table.add_row(img, artist, medium, f"[{color}]{bar}[/{color}] {conf}")
         console.print(table)
 
-        console.print("\n[green]Auto-sorted:[/green] 4  |  [yellow]Needs review:[/yellow] 1")
+        console.print("\n[green]Auto-sorted:[/green] 7  |  [yellow]Needs review:[/yellow] 1  |  [bold]Accuracy:[/bold] 87.5%")
     else:
-        for img, result, conf, _ in results:
-            print(f"  {img}: {result} ({conf})")
+        for img, artist, medium, conf, _ in results:
+            print(f"  {img}: {artist} - {medium} ({conf})")
 
 
 def demo_news_engine() -> None:
@@ -148,27 +173,60 @@ def demo_sales_analytics() -> None:
     print_header("SALES CHANNEL ANALYTICS")
 
     channels = [
-        ("eBay", "$12,450", 47, "75%"),
-        ("Etsy", "$3,200", 18, "19%"),
-        ("Poshmark", "$890", 8, "6%"),
+        ("eBay", 12450, 47, 75),
+        ("Etsy", 3200, 18, 19),
+        ("Poshmark", 890, 8, 6),
     ]
 
     if RICH_AVAILABLE:
-        table = Table(title="📊 Sales by Channel", box=box.ROUNDED)
+        table = Table(title="📊 Sales by Channel (This Month)", box=box.ROUNDED)
         table.add_column("Channel", style="cyan")
         table.add_column("Revenue", justify="right", style="green")
         table.add_column("Units", justify="right")
+        table.add_column("Avg Price", justify="right", style="dim")
         table.add_column("Share", justify="center")
 
         for channel, rev, units, share in channels:
-            share_bar = "█" * (int(share[:-1]) // 10) + "░" * (10 - int(share[:-1]) // 10)
-            table.add_row(channel, rev, str(units), f"[gold1]{share_bar}[/gold1] {share}")
+            share_bar = "█" * (share // 10) + "░" * (10 - share // 10)
+            avg = rev / units if units > 0 else 0
+            table.add_row(channel, f"${rev:,}", str(units), f"${avg:.0f}", f"[gold1]{share_bar}[/gold1] {share}%")
         console.print(table)
 
-        console.print("\n[bold]Total Revenue:[/bold] [green]$16,540[/green]  |  [bold]Best:[/bold] eBay (75%)")
+        total_rev = sum(c[1] for c in channels)
+        total_units = sum(c[2] for c in channels)
+
+        # Top sellers
+        top_sellers = [
+            ("Shepard Fairey - Hope", "eBay", "$1,200"),
+            ("Banksy - Thrower", "eBay", "$850"),
+            ("KAWS - Companion", "Etsy", "$450"),
+        ]
+
+        top_table = Table(title="🏆 Top Sellers This Month", box=box.ROUNDED)
+        top_table.add_column("Item", style="gold1")
+        top_table.add_column("Channel", style="cyan")
+        top_table.add_column("Price", justify="right", style="green")
+
+        for item, channel, price in top_sellers:
+            top_table.add_row(item, channel, price)
+        console.print(top_table)
+
+        stats = f"""
+[bold]Monthly Summary[/bold]
+
+[cyan]Total Revenue:[/cyan]   [green]${total_rev:,}[/green]
+[cyan]Units Sold:[/cyan]      {total_units}
+[cyan]Avg Order:[/cyan]       ${total_rev/total_units:.2f}
+
+[bold]vs Last Month:[/bold]
+  Revenue:  [green]↑ 23%[/green]
+  Units:    [green]↑ 18%[/green]
+  AOV:      [green]↑ 4%[/green]
+"""
+        console.print(Panel(stats, title="📈 Performance", border_style="green", box=box.ROUNDED))
     else:
         for channel, rev, units, share in channels:
-            print(f"  {channel}: {rev} ({units} units)")
+            print(f"  {channel}: ${rev:,} ({units} units)")
 
 
 def demo_installation() -> None:
