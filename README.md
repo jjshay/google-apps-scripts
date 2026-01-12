@@ -10,7 +10,9 @@
 
 A comprehensive library of Google Apps Scripts for e-commerce automation, AI integration, and data processing. These scripts power real production workflows managing thousands of art listings across eBay, Etsy, and other marketplaces.
 
-[![Demo](https://asciinema.org/a/ezpaSVFhazhotLrF.svg)](https://asciinema.org/a/ezpaSVFhazhotLrF)
+[![Demo](https://asciinema.org/a/cGkClIfGngozepiA.svg)](https://asciinema.org/a/cGkClIfGngozepiA)
+
+[![Watch Demo](https://img.shields.io/badge/▶%20Watch%20Demo-Click%20to%20Play-red?style=for-the-badge&logo=asciinema)](https://asciinema.org/a/cGkClIfGngozepiA)
 
 ---
 
