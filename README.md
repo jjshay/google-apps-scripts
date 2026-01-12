@@ -1,6 +1,8 @@
 # Google Apps Scripts Collection
 
 ![CI](https://github.com/jjshay/google-apps-scripts/workflows/CI/badge.svg)
+![CodeQL](https://github.com/jjshay/google-apps-scripts/workflows/CodeQL/badge.svg)
+![Release](https://img.shields.io/github/v/release/jjshay/google-apps-scripts)
 ![Google Apps Script](https://img.shields.io/badge/Google%20Apps%20Script-enabled-green.svg)
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
 ![AI Models](https://img.shields.io/badge/AI%20Models-Claude%20%7C%20GPT--4%20%7C%20Gemini-purple.svg)
