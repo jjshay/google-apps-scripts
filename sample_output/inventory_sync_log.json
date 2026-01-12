@@ -1,0 +1,73 @@
+{
+  "sync_run": {
+    "timestamp": "2025-01-10T14:00:00Z",
+    "trigger": "hourly_automation",
+    "duration_seconds": 127
+  },
+  "new_images_processed": [
+    {
+      "filename": "death-nyc-marilyn-001.jpg",
+      "row": 156,
+      "ai_analysis": {
+        "model": "claude-3-opus",
+        "artist": "Death NYC",
+        "title": "Marilyn Monroe x Chanel No. 5",
+        "medium": "Screen Print on Archival Paper",
+        "year": "2023",
+        "signed": true,
+        "edition": "AP 12/15",
+        "condition": "Mint",
+        "confidence": 0.96
+      },
+      "generated_fields": {
+        "sku": "1_DNYC_Marilyn-Monroe-Chanel",
+        "price": 225.00,
+        "ebay_title": "Death NYC Signed AP Marilyn Monroe Chanel Print COA",
+        "category": "Art > Art Prints",
+        "item_specifics": {
+          "Artist": "Death NYC",
+          "Style": "Pop Art",
+          "Subject": "Celebrity, Fashion",
+          "Size": "13 x 13 inches"
+        }
+      },
+      "status": "ready_for_listing"
+    },
+    {
+      "filename": "shepard-fairey-peace-002.jpg",
+      "row": 157,
+      "ai_analysis": {
+        "model": "claude-3-opus",
+        "artist": "Shepard Fairey",
+        "title": "Peace Girl",
+        "medium": "Screen Print",
+        "year": "2021",
+        "signed": true,
+        "edition": "350/450",
+        "condition": "Excellent",
+        "confidence": 0.94
+      },
+      "generated_fields": {
+        "sku": "2_SFAIREY_Peace-Girl",
+        "price": 425.00,
+        "ebay_title": "Shepard Fairey Peace Girl Screen Print 350/450 Signed",
+        "category": "Art > Art Prints"
+      },
+      "status": "ready_for_listing"
+    }
+  ],
+  "dual_ai_verification": {
+    "enabled": true,
+    "primary_model": "claude-3-opus",
+    "secondary_model": "gpt-4-vision",
+    "discrepancies_found": 0,
+    "items_verified": 2
+  },
+  "summary": {
+    "images_scanned": 15,
+    "new_images_found": 2,
+    "successfully_processed": 2,
+    "errors": 0,
+    "ready_for_listing": 2
+  }
+}
