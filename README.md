@@ -10,6 +10,44 @@ A comprehensive library of Google Apps Scripts for e-commerce automation, AI int
 
 ---
 
+## Architecture
+
+```mermaid
+flowchart TB
+    subgraph Triggers["Automation Triggers"]
+        A[Time-based Trigger] --> B[Script Executor]
+        C[Manual Menu Click] --> B
+        D[File Change Event] --> B
+    end
+
+    subgraph Input["Data Sources"]
+        E[Google Drive Images] --> F[File Scanner]
+        G[Google Sheets Data] --> H[Sheet Reader]
+        I[External APIs] --> J[API Client]
+    end
+
+    subgraph Processing["AI Processing"]
+        F --> K[Claude Vision]
+        F --> L[GPT-4 Vision]
+        F --> M[Gemini Vision]
+        K & L & M --> N[Consensus Engine]
+    end
+
+    subgraph Output["Outputs"]
+        N --> O[Sheet Writer]
+        N --> P[File Organizer]
+        N --> Q[3DSellers Sync]
+        O --> R[eBay Listings]
+        O --> S[Etsy Listings]
+    end
+
+    style A fill:#fff9c4
+    style C fill:#fff9c4
+    style D fill:#fff9c4
+    style R fill:#c8e6c9
+    style S fill:#c8e6c9
+```
+
 ## Table of Contents
 
 1. [Quick Start](#quick-start)
