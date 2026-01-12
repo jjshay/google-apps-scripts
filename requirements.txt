@@ -7,3 +7,4 @@
 #   python demo.py
 #
 # No pip install needed.
+rich>=13.0.0
