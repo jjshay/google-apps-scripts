@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "name": "google-apps-scripts",
+  "title": "Google Workspace Automation Library",
+  "category": "Commerce operations",
+  "summary": "Spreadsheet-centered operations need reusable integrations for inventory, AI assistance, and content preparation.",
+  "status": "Source available; runtime not revalidated in this documentation review",
+  "visibility": "public",
+  "reviewed_on": "2026-09-11",
+  "reviewed_commit": "1f60804f2dfd1a316bb7ab566f6c1b5f21b691cf",
+  "architecture": "Sheet rows and Drive files \u2192 Apps Script functions \u2192 provider or marketplace API \u2192 sheet-side status and output.",
+  "evidence": [
+    {
+      "path": "3dsellers/CREATE_CONFIG_SHEET.gs",
+      "role": "Implementation component supporting the data flow described above."
+    },
+    {
+      "path": "news-engine/NEWS_Pipeline_UI.gs",
+      "role": "Implementation component supporting the data flow described above."
+    }
+  ],
+  "validation": "Repository tree and referenced source reviewed. Existing application tests, hosted deployments, paid providers, and external mutations were not re-run in this documentation review.",
+  "limitations": "Apps Script fits existing operations but quotas, triggers, and partial batch completion need explicit handling.",
+  "next_improvement": "Give each script a fixture sheet, configuration contract, quota strategy, and documented execution boundary.",
+  "related_repositories": [
+    "ebay-lister",
+    "ebay-listing-automation",
+    "ebayshare",
+    "gauntlet-gallery-theme",
+    "js-ecommerce-engine"
+  ]
+}
