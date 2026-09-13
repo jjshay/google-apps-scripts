@@ -154,7 +154,7 @@ function createCatalogWithCPanelStatus() {
   const cpanelResponse = UrlFetchApp.fetch("https://gauntlet.gallery/upload_image.php", {
     method: 'post',
     payload: {
-      api_key: "dwDDsaIqQPuIwVnYPDdfNR6B2OsDtZNl",
+      api_key: getCatalogUploadKey(),
       action: 'list',
       folder: 'products'
     },
@@ -288,4 +288,12 @@ function onOpen() {
     .addItem('Upload Images from Drive', 'uploadImagesFromDrive')
     .addItem('Test Connection', 'testConnection')
     .addToUi();
+}
+
+
+/** Read the upload credential only when the cPanel integration is requested. */
+function getCatalogUploadKey() {
+  const key = PropertiesService.getScriptProperties().getProperty('GALLERY_UPLOAD_API_KEY');
+  if (!key || !key.trim()) throw new Error('Set GALLERY_UPLOAD_API_KEY in Apps Script project settings.');
+  return key.trim();
 }

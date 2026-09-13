@@ -1,6 +1,7 @@
 name: "CodeQL"
 
 on:
+  workflow_dispatch:
   push:
     branches: [ main ]
   pull_request:
@@ -12,6 +13,9 @@ jobs:
   analyze:
     name: Analyze
     runs-on: ubuntu-latest
+    env:
+      # Apps Script uses .gs; tell the JavaScript extractor to analyze it in place.
+      LGTM_INDEX_FILETYPES: .gs:JS
     permissions:
       actions: read
       contents: read
@@ -24,18 +28,20 @@ jobs:
 
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v4
+      uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+      with:
+        persist-credentials: false
 
     - name: Initialize CodeQL
-      uses: github/codeql-action/init@v3
+      uses: github/codeql-action/init@311b4ee155dcdab395044f00946f664bd51ff173 # v4
       with:
         languages: ${{ matrix.language }}
         queries: security-and-quality
 
     - name: Autobuild
-      uses: github/codeql-action/autobuild@v3
+      uses: github/codeql-action/autobuild@311b4ee155dcdab395044f00946f664bd51ff173 # v4
 
     - name: Perform CodeQL Analysis
-      uses: github/codeql-action/analyze@v3
+      uses: github/codeql-action/analyze@311b4ee155dcdab395044f00946f664bd51ff173 # v4
       with:
         category: "/language:${{matrix.language}}"
