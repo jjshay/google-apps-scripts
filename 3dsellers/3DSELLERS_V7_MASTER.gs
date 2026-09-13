@@ -6294,7 +6294,12 @@ function testGoogleAPIConnection() {
 const NAMECHEAP_CONFIG = {
   // Namecheap/gauntlet.gallery upload settings
   UPLOAD_ENDPOINT: 'https://gauntlet.gallery/upload_image.php',  // Verified endpoint
-  API_KEY: 'dwDDsaIqQPuIwVnYPDdfNR6B2OsDtZNl',  // From prior scripts
+  get API_KEY() {
+    // Read only when this integration is used; never embed provider keys.
+    const key = PropertiesService.getScriptProperties().getProperty('GALLERY_UPLOAD_API_KEY');
+    if (!key || !key.trim()) throw new Error('Set GALLERY_UPLOAD_API_KEY in Apps Script project settings.');
+    return key.trim();
+  },
   ENABLED: true
 };
 
